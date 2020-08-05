@@ -1,0 +1,202 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf600
+{\fonttbl\f0\fnil\fcharset0 Consolas;\f1\fnil\fcharset0 Calibri;\f2\fnil\fcharset0 Calibri-BoldItalic;
+}
+{\colortbl;\red255\green255\blue255;\red175\green0\blue219;\red38\green127\blue153;\red0\green0\blue255;
+\red163\green21\blue21;\red0\green16\blue128;\red121\green94\blue38;\red68\green114\blue196;\red0\green128\blue0;
+\red47\green84\blue150;\red128\green0\blue0;\red9\green136\blue90;}
+{\*\expandedcolortbl;;\csgenericrgb\c68627\c0\c85882;\csgenericrgb\c14902\c49804\c60000;\csgenericrgb\c0\c0\c100000;
+\csgenericrgb\c63922\c8235\c8235;\csgenericrgb\c0\c6275\c50196;\csgenericrgb\c47451\c36863\c14902;\csgenericrgb\c26667\c44706\c76863;\csgenericrgb\c0\c50196\c0;
+\csgenericrgb\c18431\c32941\c58824;\csgenericrgb\c50196\c0\c0;\csgenericrgb\c3529\c53333\c35294;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab708
+\pard\pardeftab708\ri-52\sl285\partightenfactor0
+
+\f0\fs18 \cf2 using\cf0 \'a0\cf3 System\cf0 ;\
+\cf2 using\cf0 \'a0\cf3 System\cf0 .\cf3 Collections\cf0 .\cf3 Generic\cf0 ;\
+\cf2 using\cf0 \'a0\cf3 System\cf0 .\cf3 Linq\cf0 ;\
+\cf2 using\cf0 \'a0\cf3 System\cf0 .\cf3 Threading\cf0 .\cf3 Tasks\cf0 ;\
+\cf2 using\cf0 \'a0\cf3 Microsoft\cf0 .\cf3 AspNetCore\cf0 .\cf3 Mvc\cf0 ;\
+\cf2 using\cf0 \'a0\cf3 Microsoft\cf0 .\cf3 Extensions\cf0 .\cf3 Logging\cf0 ;\
+\
+\pard\pardeftab708\ri-52\sl285\partightenfactor0
+\cf4 namespace\cf0 \'a0\cf3 app\cf0 .\cf3 Controllers\cf0 \
+\{\
+\'a0\'a0\'a0\'a0[\cf3 ApiController\cf0 ]\
+\'a0\'a0\'a0\'a0[\cf3 Route\cf0 (\cf5 "[controller]"\cf0 )]\
+\'a0\'a0\'a0\'a0\cf4 public\cf0 \'a0\cf4 class\cf0 \'a0\cf3 WeatherForecastController\cf0 \'a0:\'a0\cf3 ControllerBase\cf0 \
+\'a0\'a0\'a0\'a0\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf4 private\cf0 \'a0\cf4 readonly\cf0 \'a0\cf3 ILogger\cf0 <\cf3 WeatherForecastController\cf0 >\'a0\cf6 _logger\cf0 ;\
+\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf4 public\cf0 \'a0\cf7 WeatherForecastController\cf0 (\cf3 ILogger\cf0 <\cf3 WeatherForecastController\cf0 >\'a0\cf6 logger\cf0 )\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf6 _logger\cf0 \'a0=\'a0\cf6 logger\cf0 ;\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\}\
+\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0[\cf3 HttpGet\cf0 ]\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf4 public\cf0 \'a0\cf3 InfoModel\cf0 \'a0\cf7 GetInfo\cf0 ()\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 return\cf0 \'a0\cf4 new\cf0 \'a0\cf3 InfoModel\cf0 \'a0\{\'a0\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf6 AppEnvironment\cf0 \'a0=\'a0\cf7 GetEnvironmentVariable\cf0 (\cf5 "APPENVIRONMENT"\cf0 ),\'a0\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf6 AppHost\cf0 \'a0=\'a0\cf7 GetEnvironmentVariable\cf0 (\cf5 "APPHOST"\cf0 )\'a0\};\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\}\
+\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf4 private\cf0 \'a0\cf4 string\cf0 \'a0\cf7 GetEnvironmentVariable\cf0 (\cf4 string\cf0 \'a0\cf6 name\cf0 )\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf6 _logger\cf0 .\cf7 LogInformation\cf0 (\cf5 $"Getting\'a0environment\'a0variable\'a0'\{\cf6 name\cf5 \}'."\cf0 );\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf2 return\cf0 \'a0\cf6 Environment\cf0 .\cf7 GetEnvironmentVariable\cf0 (\cf6 name\cf0 .\cf7 ToLower\cf0 ())\'a0??\'a0\
+\pard\pardeftab708\li720\fi720\ri-52\sl285\partightenfactor0
+\cf6 Environment\cf0 .\cf7 GetEnvironmentVariable\cf0 (\cf6 name\cf0 .\cf7 ToUpper\cf0 ());\
+\pard\pardeftab708\ri-52\sl285\partightenfactor0
+\cf0 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\}\
+\'a0\'a0\'a0\'a0\}\
+\pard\pardeftab708\ri-52\partightenfactor0
+\cf0 \}\
+\
+\pard\pardeftab708\ri-52\sl285\partightenfactor0
+
+\f1\fs22 \cf0 \
+\
+\pard\pardeftab708\ri-52\sl285\partightenfactor0
+
+\f0\fs18 \cf2 using\cf0 \'a0\cf3 System\cf0 ;\
+\
+\pard\pardeftab708\ri-52\sl285\partightenfactor0
+\cf4 namespace\cf0 \'a0\cf3 app\cf0 .\cf3 Models\cf0 \
+\{\
+\'a0\'a0\'a0\'a0\cf4 public\cf0 \'a0\cf4 class\cf0 \'a0\cf3 InfoMode\cf0 \
+\'a0\'a0\'a0\'a0\{\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf4 public string AppEnvironment \{get; set;\}\
+	 public string AppHost \{get; set;\}\cf0 \
+\'a0\'a0\'a0\'a0\}\
+\pard\pardeftab708\ri-52\partightenfactor0
+\cf0 \}\
+\pard\pardeftab708\ri-52\sl259\slmult1\sa160\partightenfactor0
+
+\f1\fs22 \cf8 \
+\pard\pardeftab708\ri-52\sl285\partightenfactor0
+\cf0 \
+\pard\pardeftab708\ri-52\sl285\partightenfactor0
+
+\f0 \cf4 FROM\cf0 \'a0mcr.microsoft.com/dotnet/core/sdk:3.1-alpine\'a0\cf4 as\cf0 \'a0build\
+\cf4 WORKDIR\cf0 \'a0/app\
+\
+\pard\pardeftab708\ri-52\sl285\partightenfactor0
+\cf9 #\'a0copy\'a0csproj\'a0and\'a0restore\cf0 \
+\pard\pardeftab708\ri-52\sl285\partightenfactor0
+\cf4 COPY\cf0 \'a0app/*.csproj\'a0./aspnetapp/\
+\cf4 RUN\cf0 \'a0cd\'a0./aspnetapp/\'a0&&\'a0dotnet\'a0restore\'a0\
+\
+\pard\pardeftab708\ri-52\sl285\partightenfactor0
+\cf9 #\'a0copy\'a0all\'a0files\'a0and\'a0build\cf0 \
+\pard\pardeftab708\ri-52\sl285\partightenfactor0
+\cf4 COPY\cf0 \'a0app/.\'a0./aspnetapp/\
+\cf4 WORKDIR\cf0 \'a0/app/aspnetapp\
+\cf4 RUN\cf0 \'a0dotnet\'a0publish\'a0-c\'a0Release\'a0-o\'a0out\
+\pard\pardeftab708\ri-52\sl285\sa240\partightenfactor0
+\cf0 \
+\pard\pardeftab708\ri-52\sl285\partightenfactor0
+\cf4 FROM\cf0 \'a0mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine\'a0\cf4 as\cf0 \'a0runtime\
+\cf4 WORKDIR\cf0 \'a0/app\
+\cf4 COPY\cf0 \'a0--from=build\'a0/app/aspnetapp/out\'a0./\
+\cf4 ENTRYPOINT\cf0 \'a0[\'a0\cf5 "dotnet"\cf0 ,\'a0\cf5 "app.dll"\cf0 \'a0]\
+\pard\pardeftab708\ri-52\sl259\slmult1\sa160\partightenfactor0
+
+\f1 \cf0 \
+\
+\pard\pardeftab708\ri-52\sl259\slmult1\sb40\partightenfactor0
+
+\f2\i\b \cf10 Fichier Chart.yaml\
+\pard\pardeftab708\ri-52\sl285\partightenfactor0
+
+\f0\i0\b0 \cf11 \uc0\u8232 name\cf0 :\'a0\cf4 aspnet3-demo\cf0 \
+\cf11 version\cf0 :\'a0\cf12 1.0.0\cf0 \
+\pard\pardeftab708\ri-52\sl259\slmult1\sa160\partightenfactor0
+
+\f1 \cf0 \
+\pard\pardeftab708\ri-52\sl259\slmult1\sb40\partightenfactor0
+
+\f2\i\b \cf10 Fichier values.yaml\
+\pard\pardeftab708\ri-52\sl285\partightenfactor0
+
+\f0\i0\b0 \cf11 \uc0\u8232 environment\cf0 :\'a0\cf4 development\cf0 \
+\
+\cf11 apphost\cf0 :\'a0\cf4 k8s\cf0 \
+\
+\cf11 label\cf0 :\
+\'a0\'a0\cf11 name\cf0 :\'a0\cf4 aspnet3core\cf0 \
+\
+\cf11 container\cf0 :\
+\'a0\'a0\cf11 name\cf0 :\'a0\cf4 aspnet3\cf0 \
+\'a0\'a0\cf11 pullPolicy\cf0 :\'a0\cf4 IfNotPresent\cf0 \
+\'a0\'a0\cf11 image\cf0 :\'a0\cf4 localhost:32000/aspnet3k8s\cf0 \
+\'a0\'a0\cf11 tag\cf0 :\'a0\cf4 latest\cf0 \
+\'a0\'a0\cf11 port\cf0 :\'a0\cf12 80\cf0 \
+\cf11 replicas\cf0 :\'a0\cf12 3\cf0 \
+\
+\cf11 service\cf0 :\
+\'a0\'a0\cf11 port\cf0 :\'a0\cf12 8888\cf0 \
+\'a0\'a0\cf9 #type:\'a0ClusterIP\cf0 \
+\'a0\'a0\cf11 type\cf0 :\'a0\cf4 NodePort\cf0 \
+\pard\pardeftab708\ri-52\sl259\slmult1\sa160\partightenfactor0
+
+\f1 \cf0 \
+\pard\pardeftab708\ri-52\sl259\slmult1\sb40\partightenfactor0
+
+\f2\i\b \cf10 Fichier templates/services.yaml\
+\pard\pardeftab708\ri-52\sl285\partightenfactor0
+
+\f0\i0\b0 \cf11 apiVersion\cf0 :\'a0\cf4 v1\cf0 \
+\cf11 kind\cf0 :\'a0\cf4 Service\cf0 \
+\cf11 metadata\cf0 :\
+\'a0\'a0\cf11 name\cf0 :\'a0\{\{\'a0\cf4 .Release.Name\cf0 \'a0\}\}\cf4 -service\cf0 \
+\'a0\'a0\cf11 labels\cf0 :\
+\'a0\'a0\'a0\'a0\cf11 app\cf0 :\'a0\{\{\'a0\cf4 .Values.label.name\cf0 \'a0\}\}\
+\cf11 spec\cf0 :\
+\'a0\'a0\cf11 ports\cf0 :\
+\'a0\'a0-\'a0\cf11 port\cf0 :\'a0\{\{\'a0\cf4 .Values.service.port\cf0 \}\}\
+\'a0\'a0\'a0\'a0\cf11 protocol\cf0 :\'a0\cf4 TCP\cf0 \
+\'a0\'a0\'a0\'a0\cf11 targetPort\cf0 :\'a0\{\{\'a0\cf4 .Values.container.port\cf0 \'a0\}\}\
+\'a0\'a0\cf11 selector\cf0 :\
+\'a0\'a0\'a0\'a0\cf11 app\cf0 :\'a0\{\{\'a0\cf4 .Values.label.name\cf0 \'a0\}\}\
+\'a0\'a0\cf11 type\cf0 :\'a0\{\{\'a0\cf4 .Values.service.type\cf0 \'a0\}\}\
+\pard\pardeftab708\ri-52\sl259\slmult1\sa160\partightenfactor0
+
+\f1 \cf0 \
+\pard\pardeftab708\ri-52\sl259\slmult1\sb40\partightenfactor0
+
+\f2\i\b \cf10 Fichier templates/deployment.yaml\
+\pard\pardeftab708\ri-52\sl285\partightenfactor0
+
+\f0\i0\b0 \cf11 apiVersion\cf0 :\'a0\cf4 apps/v1\cf0 \
+\cf11 kind\cf0 :\'a0\cf4 Deployment\cf0 \
+\cf11 metadata\cf0 :\
+\'a0\'a0\cf11 name\cf0 :\'a0\{\{\'a0\cf4 .Release.Name\cf0 \'a0\}\}\cf4 -deployment\cf0 \
+\'a0\'a0\cf11 labels\cf0 :\
+\'a0\'a0\'a0\'a0\cf11 app\cf0 :\'a0\{\{\'a0\cf4 .Values.label.name\cf0 \'a0\}\}\
+\cf11 spec\cf0 :\
+\'a0\'a0\cf11 replicas\cf0 :\'a0\{\{\'a0\cf4 .Values.replicas\cf0 \'a0\}\}\
+\'a0\'a0\cf11 selector\cf0 :\
+\'a0\'a0\'a0\'a0\cf11 matchLabels\cf0 :\
+\'a0\'a0\'a0\'a0\'a0\'a0\cf11 app\cf0 :\'a0\{\{\'a0\cf4 .Values.label.name\cf0 \'a0\}\}\
+\'a0\'a0\cf11 template\cf0 :\
+\'a0\'a0\'a0\'a0\cf11 metadata\cf0 :\
+\'a0\'a0\'a0\'a0\'a0\'a0\cf11 labels\cf0 :\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf11 app\cf0 :\'a0\{\{\'a0\cf4 .Values.label.name\cf0 \'a0\}\}\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf11 environment\cf0 :\'a0\{\{\'a0\cf4 .Values.environment\cf0 \'a0\}\}\
+\'a0\'a0\'a0\'a0\cf11 spec\cf0 :\
+\'a0\'a0\'a0\'a0\'a0\'a0\cf11 containers\cf0 :\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0-\'a0\cf11 name\cf0 :\'a0\{\{\'a0\cf4 .Values.container.name\cf0 \'a0\}\}\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf11 image\cf0 :\'a0\{\{\'a0\cf4 .Values.container.image\cf0 \'a0\}\}\cf4 :\{\{\'a0.Values.container.tag\'a0\}\}\cf0 \
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf11 imagePullPolicy\cf0 :\'a0\{\{\'a0\cf4 .Values.container.pullPolicy\cf0 \'a0\}\}\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf11 ports\cf0 :\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0-\'a0\cf11 containerPort\cf0 :\'a0\{\{\'a0\cf4 .Values.container.port\cf0 \'a0\}\}\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf11 env\cf0 :\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0-\'a0\cf11 name\cf0 :\'a0\cf4 apphost\cf0 \
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf11 value\cf0 :\'a0\{\{\'a0\cf4 .Values.apphost\cf0 \'a0\}\}\
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0-\'a0\cf11 name\cf0 :\'a0\cf4 appenvironment\cf0 \
+\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf11 value\cf0 :\'a0\{\{\'a0\cf4 .Values.environment\cf0 \}\}\
+\pard\pardeftab708\ri-52\sl259\slmult1\sa160\partightenfactor0
+
+\f1 \cf0 \
+\
+}
